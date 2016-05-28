@@ -1,11 +1,17 @@
 package com.example.drpet.UserOperatePackage;
 
+import android.app.ActivityManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,6 +50,7 @@ public class MyPetService extends Service {
         RefresTask(){}
         @Override
         public void run() {
+            //检验是否为桌面是否有悬浮窗显示的响应
             if(isHome() && !MyWindowManager.isWindowShowing()){
                 handler.post(new Runnable() {
                     @Override
@@ -71,8 +78,28 @@ public class MyPetService extends Service {
         }
     }
 
+    /***
+     * 判断是否为桌面
+     * @return
+     */
     private boolean isHome() {
-        return false;
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> rti = activityManager.getRunningTasks(1);
+        return getHome().contains(rti.get(0).topActivity.getPackageName());
     }
-
+    /***
+     *获取桌面应用的应用包名
+     * @return 所有包名列表
+     */
+    private List<String> getHome() {
+        List<String> names = new ArrayList<String>();
+        PackageManager packageManager = this.getPackageManager();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        List<ResolveInfo> resolveInfo = packageManager.queryIntentActivities(intent, packageManager.MATCH_DEFAULT_ONLY);
+        for(ResolveInfo ri : resolveInfo){
+            names.add(ri.activityInfo.packageName);
+        }
+        return names;
+    }
 }

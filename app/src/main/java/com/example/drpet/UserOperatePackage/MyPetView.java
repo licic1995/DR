@@ -18,16 +18,16 @@ import java.lang.reflect.Field;
 public class MyPetView extends LinearLayout{
 
     private WindowManager mWindowManager;
-    private float viewWidth;
-    private float viewHeight;
+    public static int viewWidth;
+    public static int viewHeight;
     private int statusBarHeight;
     public MyPetView(Context context) {
         super(context);
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         LayoutInflater.from(context).inflate(R.layout.layout_petview, this);
         View view = findViewById(R.id.pet_view_layout);
-        viewHeight = view.getHeight();
-        viewWidth = view.getHeight();
+        viewHeight = view.getLayoutParams().height;
+        viewWidth = view.getLayoutParams().width;
     }
 
     private WindowManager.LayoutParams mLayoutParams;
