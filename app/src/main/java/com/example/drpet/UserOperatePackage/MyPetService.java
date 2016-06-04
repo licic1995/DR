@@ -29,6 +29,7 @@ public class MyPetService extends Service {
 
     private Handler handler = new Handler();
     private Timer timer;
+    public static boolean isStart = false;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -36,6 +37,7 @@ public class MyPetService extends Service {
             timer = new Timer();
             timer.scheduleAtFixedRate(new RefresTask(), 0, 500);
         }
+        isStart = true;
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -44,6 +46,7 @@ public class MyPetService extends Service {
         super.onDestroy();
         timer.cancel();
         timer = null;
+        isStart = false;
     }
 
     private class RefresTask extends TimerTask {

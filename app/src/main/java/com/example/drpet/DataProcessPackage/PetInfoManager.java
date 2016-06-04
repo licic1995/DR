@@ -16,10 +16,10 @@ public class PetInfoManager {
 
     /***
      *  插入宠物信息数据 参数如命
-     * @param time
-     * @param happyValue
-     * @param healthValue
-     * @param hungerValue
+     * @param time          当前系统时间
+     * @param happyValue    。
+     * @param healthValue   。
+     * @param hungerValue   。
      */
     public void insert(int time, int happyValue, int healthValue, int hungerValue){
         SQLiteDatabase db = mydbhelper.getWritableDatabase();
@@ -31,6 +31,10 @@ public class PetInfoManager {
         db.close();
     }
 
+    /***
+     * 查询宠物信息
+     * @return 数据库查询结果Cursor
+     */
     public Cursor getPetInfo(){
         SQLiteDatabase db = mydbhelper.getReadableDatabase();
         Cursor cursor = db.query("petinfo", null, null, null, null, null, null);
@@ -41,6 +45,10 @@ public class PetInfoManager {
             cursor.close();
     }
 
+    /***
+     * 查询上次操作时间
+     * @return  时间
+     */
     public int getLastTime(){
         SQLiteDatabase db = mydbhelper.getReadableDatabase();
         Cursor cursor = db.query("petinfo", null, null, null, null, null, null);
@@ -52,10 +60,14 @@ public class PetInfoManager {
         return 0;
     }
 
+    /***
+     * 删除过旧数据
+     */
     public void deleteOldInfo(){
         SQLiteDatabase db = mydbhelper.getWritableDatabase();
         while(db.getPageSize() > 800){
             String sql = "delete from petinfo where _time=(select min(_time) from petinfo)";
+            db.execSQL(sql);
         }
         db.close();
     }

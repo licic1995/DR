@@ -20,14 +20,9 @@ public class DbHelper extends SQLiteOpenHelper{
      */
     private static final int VERSION = 1;
 
-
     public DbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
-
-
-    //TODO:DbHelper
-    //
 
     @Override
     public void onCreate(SQLiteDatabase db) {
