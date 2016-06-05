@@ -18,12 +18,17 @@ public class MyWindowManager {
 
     /***
      * 检测是否有宠物窗口显示
-     * @return
+     * @return boolean
      */
     public static boolean isWindowShowing() {
         return mPetView!=null;
     }
 
+
+    /***
+     * 开启桌面宠物
+     * @param context 上下文
+     */
     public static void createPetView(Context context) {
         WindowManager windowmanager = getWindowManager(context);
         DisplayMetrics dm = new DisplayMetrics();

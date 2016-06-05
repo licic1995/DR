@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.drpet.MainActivity">
     <LinearLayout
+        android:id="@+id/linerlayout_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -20,12 +21,91 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Main_Status"/>
+        <ImageButton
+            android:layout_marginLeft="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_launcher"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linerlayout_info"
+        android:orientation="vertical"
+        android:gravity="clip_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="快乐值："/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+            <com.example.drpet.MyWidget.ProgressBar_PetInfo
+                style="@style/ProgressBar_Petinfo"
+                android:id="@+id/pb_happy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="100" />
+            <ImageButton
+                android:id="@+id/hint_happy"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_ques" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="健康值：："/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+            <com.example.drpet.MyWidget.ProgressBar_PetInfo
+                style="@style/ProgressBar_Petinfo"
+                android:id="@+id/pb_health"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="70" />
+            <ImageButton
+                android:id="@+id/hint_health"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_ques" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="饥饿值："/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+            <com.example.drpet.MyWidget.ProgressBar_PetInfo
+                style="@style/ProgressBar_Petinfo"
+                android:id="@+id/pb_hunger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="30" />
+            <ImageButton
+                android:id="@+id/hint_hunger"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_ques" />
+
+        </LinearLayout>
+
+
+        <!--TODO: 闹钟navigation -->
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Hello World!" />
+
 </RelativeLayout>

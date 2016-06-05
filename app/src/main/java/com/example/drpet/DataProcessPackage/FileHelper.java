@@ -68,7 +68,7 @@ public class FileHelper {
                 content.append(line);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
         }finally {

@@ -21,13 +21,14 @@ public class PetInfoManager {
      * @param healthValue   。
      * @param hungerValue   。
      */
-    public void insert(int time, int happyValue, int healthValue, int hungerValue){
+    public void insert(int time, int happyValue, int healthValue, int hungerValue, String desc){
         SQLiteDatabase db = mydbhelper.getWritableDatabase();
-        db.execSQL("insert into petinfo(_time,HappyValue,HealthValue,HungerValue)values(" +
+        db.execSQL("insert into petinfo(_time,HappyValue,HealthValue,HungerValue,desc)values(" +
                 "'"+time+"'," +
                 "'"+happyValue+"'," +
                 "'"+healthValue+"'," +
-                "'"+hungerValue+"')" );
+                "'"+hungerValue+"'," +
+                "'"+desc+"')" );
         db.close();
     }
 
@@ -37,7 +38,7 @@ public class PetInfoManager {
      */
     public Cursor getPetInfo(){
         SQLiteDatabase db = mydbhelper.getReadableDatabase();
-        Cursor cursor = db.query("petinfo", null, null, null, null, null, null);
+        Cursor cursor = db.query("petinfo", null, null, null, null, null, null, null);
         return cursor;
     }
     public void closeCursor(Cursor cursor){
@@ -51,7 +52,7 @@ public class PetInfoManager {
      */
     public int getLastTime(){
         SQLiteDatabase db = mydbhelper.getReadableDatabase();
-        Cursor cursor = db.query("petinfo", null, null, null, null, null, null);
+        Cursor cursor = db.query("petinfo", null, null, null, null, null, null, null);
         if(cursor.moveToLast()){
             String result = cursor.getString(cursor.getColumnIndex("_time"));
             return Integer.parseInt(result);
@@ -65,7 +66,7 @@ public class PetInfoManager {
      */
     public void deleteOldInfo(){
         SQLiteDatabase db = mydbhelper.getWritableDatabase();
-        while(db.getPageSize() > 800){
+        while(db.getPageSize() > 1000){
             String sql = "delete from petinfo where _time=(select min(_time) from petinfo)";
             db.execSQL(sql);
         }

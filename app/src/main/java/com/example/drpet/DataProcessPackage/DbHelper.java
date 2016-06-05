@@ -20,9 +20,14 @@ public class DbHelper extends SQLiteOpenHelper{
      */
     private static final int VERSION = 1;
 
+
     public DbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
+
+
+    //TODO:DbHelper
+    //
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -30,7 +35,8 @@ public class DbHelper extends SQLiteOpenHelper{
                 "(_time INTEGER PRIMARY KEY NOT NULL," +
                 "HappyValue INTEGER NOT NULL," +
                 "HealthValue INTEGER NOT NULL," +
-                "HungerValue INTEGER NOT NULL)");
+                "HungerValue INTEGER NOT NULL," +
+                "desc TEXT NOT NULL)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
