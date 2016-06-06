@@ -3,6 +3,7 @@ package com.example.drpet;
 import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private TextView txt_petname;
+    private ImageButton ib_petstatus;
     private ProgressBar_PetInfo pb_happy;
     private ProgressBar_PetInfo pb_hunger;
     private ProgressBar_PetInfo pb_health;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txt_petname = (TextView) findViewById(R.id.txt_petname);
+        ib_petstatus = (ImageButton) findViewById(R.id.ib_petstatus);
         pb_happy = (ProgressBar_PetInfo) findViewById(R.id.pb_happy);
         pb_health = (ProgressBar_PetInfo) findViewById(R.id.pb_health);
         pb_hunger = (ProgressBar_PetInfo) findViewById(R.id.pb_hunger);
@@ -44,7 +47,18 @@ public class MainActivity extends AppCompatActivity {
         }else{
             //TODO:服务已开启
         }
-
+        ib_petstatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MyPetService.isStart){
+                    Log.i("Service","<----CLOSE---->");
+                    MyWindowManager.removePetView(getApplicationContext());
+                }else{
+                    Log.i("Service","<----OPEN---->");
+                    MyWindowManager.createPetView(getApplicationContext());
+                }
+            }
+        });
         hint_happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

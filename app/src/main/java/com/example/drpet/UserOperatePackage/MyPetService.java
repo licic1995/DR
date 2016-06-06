@@ -9,6 +9,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,7 @@ public class MyPetService extends Service {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        Log.i("Service","HOME AND NOT SHOWING");
                         MyWindowManager.createPetView(getApplicationContext());
                     }
                 });
@@ -66,6 +68,7 @@ public class MyPetService extends Service {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        Log.i("Service","NOT HOME AND SHOWING");
                         MyWindowManager.removePetView(getApplicationContext());
                     }
                 });
@@ -74,6 +77,7 @@ public class MyPetService extends Service {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        Log.i("Service","HOME AND SHOWING");
                         //TODO: Animation
                     }
                 });

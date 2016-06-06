@@ -28,6 +28,7 @@ public class MyPetView extends LinearLayout{
         View view = findViewById(R.id.pet_view_layout);
         viewHeight = view.getLayoutParams().height;
         viewWidth = view.getLayoutParams().width;
+        mLayoutParams = new WindowManager.LayoutParams();
     }
 
     private WindowManager.LayoutParams mLayoutParams;
@@ -90,7 +91,7 @@ public class MyPetView extends LinearLayout{
     private int getStatusBarHeight(){
         if(statusBarHeight == 0){
             try{
-                Class<?> c= Class.forName("com.adroid.internal.R$dimen");
+                Class<?> c= Class.forName("com.android.internal.R$dimen");
                 Object o = c.newInstance();
                 Field field = c.getField("status_bar_height");
                 int x = (Integer) field.get(o);
