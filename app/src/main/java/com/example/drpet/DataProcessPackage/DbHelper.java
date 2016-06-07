@@ -26,13 +26,10 @@ public class DbHelper extends SQLiteOpenHelper{
     }
 
 
-    //TODO:DbHelper
-    //
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS petinfo" +
-                "(_time INTEGER PRIMARY KEY NOT NULL," +
+                "(_time TEXT PRIMARY KEY NOT NULL," +
                 "HappyValue INTEGER NOT NULL," +
                 "HealthValue INTEGER NOT NULL," +
                 "HungerValue INTEGER NOT NULL," +

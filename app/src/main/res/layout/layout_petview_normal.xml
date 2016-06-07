@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="60dip"
     android:layout_height="60dip"
-    android:background="@drawable/icon_launcher"
-    android:id="@+id/pet_view_layout"
+    android:background="@drawable/icon_normal"
+    android:id="@+id/pet_view_layout_normal"
     android:orientation="horizontal">
 
 </LinearLayout>

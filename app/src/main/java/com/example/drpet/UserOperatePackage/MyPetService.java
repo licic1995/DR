@@ -33,12 +33,18 @@ public class MyPetService extends Service {
     public static boolean isStart = false;
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.i("Service","<--ServiceCreate-->");
+        MyPetService.isStart = true;
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(timer == null){
             timer = new Timer();
             timer.scheduleAtFixedRate(new RefresTask(), 0, 500);
         }
-        isStart = true;
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -59,7 +65,6 @@ public class MyPetService extends Service {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Log.i("Service","HOME AND NOT SHOWING");
                         MyWindowManager.createPetView(getApplicationContext());
                     }
                 });
@@ -68,7 +73,6 @@ public class MyPetService extends Service {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Log.i("Service","NOT HOME AND SHOWING");
                         MyWindowManager.removePetView(getApplicationContext());
                     }
                 });
@@ -77,7 +81,6 @@ public class MyPetService extends Service {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Log.i("Service","HOME AND SHOWING");
                         //TODO: Animation
                     }
                 });

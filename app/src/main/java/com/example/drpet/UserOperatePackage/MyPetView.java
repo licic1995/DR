@@ -28,7 +28,7 @@ public class MyPetView extends LinearLayout{
         View view = findViewById(R.id.pet_view_layout);
         viewHeight = view.getLayoutParams().height;
         viewWidth = view.getLayoutParams().width;
-        mLayoutParams = new WindowManager.LayoutParams();
+        //mLayoutParams = new WindowManager.LayoutParams();
     }
 
     private WindowManager.LayoutParams mLayoutParams;
@@ -38,6 +38,10 @@ public class MyPetView extends LinearLayout{
     private float yPosInScreen;
     private float xPosInScreen_Down;
     private float yPosInScreen_Down;
+
+    public void setmLayoutParams(WindowManager.LayoutParams params){
+        mLayoutParams = params;
+    }
 
     /***
      * 响应宠物点击拖动事件

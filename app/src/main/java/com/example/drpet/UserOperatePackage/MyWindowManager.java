@@ -3,6 +3,7 @@ package com.example.drpet.UserOperatePackage;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
@@ -21,15 +22,16 @@ public class MyWindowManager {
      * @return boolean
      */
     public static boolean isWindowShowing() {
-        return mPetView!=null;
+        return mPetView != null;
     }
 
 
     /***
      * 开启桌面宠物
-     * @param context 上下文
+     * @param context 应用程序的上下文
      */
     public static void createPetView(Context context) {
+        Log.i("Service","<--- create pet view --->");
         WindowManager windowmanager = getWindowManager(context);
         DisplayMetrics dm = new DisplayMetrics();
         windowmanager.getDefaultDisplay().getMetrics(dm);
@@ -49,7 +51,7 @@ public class MyWindowManager {
                 petLayoutParams.x = screenWidth;
                 petLayoutParams.y = screenHeight / 2;//初始化位置在屏幕右边缘中间处
             }
-            mPetView.setLayoutParams(petLayoutParams);
+            mPetView.setmLayoutParams(petLayoutParams);
             windowmanager.addView(mPetView, petLayoutParams);
         }
 

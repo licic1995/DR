@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.math.BigInteger;
+
 
 /**
  * Created by Administrator on 2016/5/28 0028.
@@ -21,13 +23,13 @@ public class PetInfoManager {
      * @param healthValue   。
      * @param hungerValue   。
      */
-    public void insert(int time, int happyValue, int healthValue, int hungerValue, String desc){
+    public void insert(long time, int happyValue, int healthValue, int hungerValue, String desc){
         SQLiteDatabase db = mydbhelper.getWritableDatabase();
         db.execSQL("insert into petinfo(_time,HappyValue,HealthValue,HungerValue,desc)values(" +
-                "'"+time+"'," +
-                "'"+happyValue+"'," +
-                "'"+healthValue+"'," +
-                "'"+hungerValue+"'," +
+                "'"+String.valueOf(time)+"'," +
+                "'"+String.valueOf(happyValue)+"'," +
+                "'"+String.valueOf(healthValue)+"'," +
+                "'"+String.valueOf(hungerValue)+"'," +
                 "'"+desc+"')" );
         db.close();
     }
@@ -50,15 +52,18 @@ public class PetInfoManager {
      * 查询上次操作时间
      * @return  时间
      */
-    public int getLastTime(){
+    public long getLastTime(){
         SQLiteDatabase db = mydbhelper.getReadableDatabase();
         Cursor cursor = db.query("petinfo", null, null, null, null, null, null, null);
         if(cursor.moveToLast()){
             String result = cursor.getString(cursor.getColumnIndex("_time"));
-            return Integer.parseInt(result);
+            if(result != null) {
+                cursor.close();
+                return Long.parseLong(result);
+            }
         }
         cursor.close();
-        return 0;
+        return System.currentTimeMillis();
     }
 
     /***
@@ -72,4 +77,5 @@ public class PetInfoManager {
         }
         db.close();
     }
+
 }
