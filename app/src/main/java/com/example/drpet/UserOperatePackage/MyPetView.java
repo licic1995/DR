@@ -1,12 +1,17 @@
 package com.example.drpet.UserOperatePackage;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.drpet.AnimationPackage.AnimationPlayer;
 import com.example.drpet.R;
 
 import java.lang.reflect.Field;
@@ -21,6 +26,26 @@ public class MyPetView extends LinearLayout{
     public static int viewWidth;
     public static int viewHeight;
     private int statusBarHeight;
+    private volatile int flag = 0;
+
+    private Handler handler;//次handler更新ui依然会报错   =。=  尴尬
+    private Thread sleepthread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                while(flag<10){
+                    Thread.currentThread().sleep(300);
+                    flag++;
+                    System.out.println(flag);
+                }
+                Message msg = new Message();
+                msg.what = 1;
+                handler.sendMessage(msg);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    });
     public MyPetView(Context context) {
         super(context);
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -28,7 +53,7 @@ public class MyPetView extends LinearLayout{
         View view = findViewById(R.id.pet_view_layout);
         viewHeight = view.getLayoutParams().height;
         viewWidth = view.getLayoutParams().width;
-        //mLayoutParams = new WindowManager.LayoutParams();
+
     }
 
     private WindowManager.LayoutParams mLayoutParams;
@@ -77,6 +102,9 @@ public class MyPetView extends LinearLayout{
 
     private void clickPet() {
         //TODO: 宠物点击事件
+        Log.i("PET","<--------------Click pet----------->");
+        AnimationPlayer animationPlayer = new AnimationPlayer((ImageView) findViewById(R.id.iv_desktop));
+        animationPlayer.startSleep();
     }
 
     /***
@@ -86,6 +114,8 @@ public class MyPetView extends LinearLayout{
         mLayoutParams.x = (int) (xPosInScreen - xPosInView);
         mLayoutParams.y = (int) (yPosInScreen - yPosInView);
         mWindowManager.updateViewLayout(this, mLayoutParams);
+
+
     }
 
     /***

@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private String petname = null;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    /***
+     * 初始化
+     */
+    private void initView(){
         txt_petname = (TextView) findViewById(R.id.txt_petname);
         txt_petstatus = (TextView) findViewById(R.id.txt_petstatus);
         ib_petstatus = (ImageButton) findViewById(R.id.ib_petstatus);
@@ -48,7 +48,14 @@ public class MainActivity extends AppCompatActivity {
         hint_happy = (ImageButton) findViewById(R.id.hint_happy);
         hint_health = (ImageButton) findViewById(R.id.hint_health);
         hint_hunger = (ImageButton) findViewById(R.id.hint_hunger);
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        initView();
 
 
         final FileHelper f_petname = new FileHelper("petname");

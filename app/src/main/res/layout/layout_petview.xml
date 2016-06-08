@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="60dip"
     android:layout_height="60dip"
-    android:background="@drawable/icon_launcher"
     android:id="@+id/pet_view_layout"
     android:orientation="horizontal">
-
+    <ImageView
+        android:id="@+id/iv_desktop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/icon_normal"/>
 </LinearLayout>
