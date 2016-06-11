@@ -3,6 +3,7 @@ package com.example.drpet.DataProcessPackage;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.math.BigInteger;
 
@@ -32,6 +33,7 @@ public class PetInfoManager {
                 "'"+String.valueOf(hungerValue)+"'," +
                 "'"+desc+"')" );
         db.close();
+        deleteOldInfo();
     }
 
     /***
@@ -70,6 +72,7 @@ public class PetInfoManager {
      * 删除过旧数据
      */
     public void deleteOldInfo(){
+        Log.i("DATABASE","Delete old information");
         SQLiteDatabase db = mydbhelper.getWritableDatabase();
         while(db.getPageSize() > 1000){
             String sql = "delete from petinfo where _time=(select min(_time) from petinfo)";

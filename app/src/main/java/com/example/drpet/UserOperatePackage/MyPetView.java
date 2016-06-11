@@ -38,9 +38,9 @@ public class MyPetView extends LinearLayout{
                     flag++;
                     System.out.println(flag);
                 }
-                Message msg = new Message();
-                msg.what = 1;
-                handler.sendMessage(msg);
+//                Message msg = new Message();
+//                msg.what = 1;
+//                handler.sendMessage(msg);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -90,8 +90,9 @@ public class MyPetView extends LinearLayout{
                 updataViewPosion();
                 break;
             case MotionEvent.ACTION_UP:
-                if(xPosInScreen_Down == xPosInScreen && yPosInScreen_Down == yPosInScreen){
+                if(Math.abs(xPosInScreen_Down - xPosInScreen) < 20 && Math.abs(yPosInScreen_Down - yPosInScreen) < 20){
                     clickPet();
+
                 }
                 break;
             default:
@@ -114,8 +115,6 @@ public class MyPetView extends LinearLayout{
         mLayoutParams.x = (int) (xPosInScreen - xPosInView);
         mLayoutParams.y = (int) (yPosInScreen - yPosInView);
         mWindowManager.updateViewLayout(this, mLayoutParams);
-
-
     }
 
     /***
