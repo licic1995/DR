@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,9 +13,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.drpet.AnimationPackage.AnimationPlayer;
+import com.example.drpet.DataProcessPackage.PetInfo;
 import com.example.drpet.R;
 
 import java.lang.reflect.Field;
+import java.util.Calendar;
 
 
 /**
@@ -27,6 +30,7 @@ public class MyPetView extends LinearLayout{
     public static int viewHeight;
     private int statusBarHeight;
     private volatile int flag = 0;
+    private Calendar calendar;
 
     private Handler handler;//次handler更新ui依然会报错   =。=  尴尬
     private Thread sleepthread = new Thread(new Runnable() {
@@ -92,8 +96,11 @@ public class MyPetView extends LinearLayout{
             case MotionEvent.ACTION_UP:
                 if(Math.abs(xPosInScreen_Down - xPosInScreen) < 20 && Math.abs(yPosInScreen_Down - yPosInScreen) < 20){
                     clickPet();
-
+                }else{
+                    moveOver();
                 }
+                PetInfo.newHappy();
+                Log.i("HAPPY VALUE",String.valueOf(PetInfo.getHappy()));
                 break;
             default:
                 break;
@@ -101,11 +108,24 @@ public class MyPetView extends LinearLayout{
         return super.onTouchEvent(event);
     }
 
-    private void clickPet() {
-        //TODO: 宠物点击事件
-        Log.i("PET","<--------------Click pet----------->");
+    private void moveOver(){
+        Log.i("PET","<--------------Move Over----------->");
         AnimationPlayer animationPlayer = new AnimationPlayer((ImageView) findViewById(R.id.iv_desktop));
-        animationPlayer.startSleep();
+        animationPlayer.moveeOver();
+    }
+    private void clickPet() {
+        calendar = Calendar.getInstance();
+        Log.i("PET","<--------------Click the pet----------->" + String.valueOf(calendar.get(Calendar.HOUR)));
+        if(calendar.get(Calendar.HOUR_OF_DAY) < 14 && calendar.get(Calendar.HOUR_OF_DAY) >= 11){
+            PetInfo.newHunger();
+            AnimationPlayer animationPlayer = new AnimationPlayer((ImageView) findViewById(R.id.iv_desktop));
+            animationPlayer.startEat();
+            Log.i("PET","Eating");
+        }
+        else {
+            AnimationPlayer animationPlayer = new AnimationPlayer((ImageView) findViewById(R.id.iv_desktop));
+            animationPlayer.startSleep();
+        }
     }
 
     /***
@@ -135,5 +155,4 @@ public class MyPetView extends LinearLayout{
         }
         return statusBarHeight;
     }
-
 }

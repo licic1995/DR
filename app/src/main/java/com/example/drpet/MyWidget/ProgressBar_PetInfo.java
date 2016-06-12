@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
  */
 public class ProgressBar_PetInfo extends ProgressBar{
 
-    //TODO: progressbar_petinfo
+
 
     private String text_peogress;
     private Paint paint_white;

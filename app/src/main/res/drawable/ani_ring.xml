@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+
+    <item
+        android:drawable="@drawable/ani_ring1"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring2"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring3"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring4"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring5"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring6"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring7"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring1"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring2"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring3"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring4"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring5"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring6"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring7"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring1"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring2"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring3"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring4"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring5"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring6"
+        android:duration="300">
+
+    </item>
+    <item
+        android:drawable="@drawable/ani_ring7"
+        android:duration="300">
+
+    </item>
+</animation-list>

@@ -8,8 +8,11 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
+
+import com.example.drpet.DataProcessPackage.PetInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +33,24 @@ public class MyPetService extends Service {
 
     private Handler handler = new Handler();
     private Timer timer;
+    private int countHealth;
     public static boolean isStart = false;
+    public static boolean alarmflag = false;
+    /***
+     * 用于检测设备电源状态
+     */
+    private PowerManager powerManager;
+    private boolean isPowerOff;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
         Log.i("Service","<--ServiceCreate-->");
         MyPetService.isStart = true;
+        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        isPowerOff = false;
+        countHealth = 0;
     }
 
     @Override
@@ -51,8 +65,10 @@ public class MyPetService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        timer.cancel();
-        timer = null;
+        if(timer != null){
+            timer.cancel();
+            timer = null;
+        }
         isStart = false;
     }
 
@@ -61,6 +77,12 @@ public class MyPetService extends Service {
         @Override
         public void run() {
             //检验是否为桌面是否有悬浮窗显示的响应
+            if(countHealth < 240){
+                countHealth++;
+            } else {
+                countHealth = 0;
+                PetInfo.newHealth();
+            }
             if(isHome() && !MyWindowManager.isWindowShowing()){
                 handler.post(new Runnable() {
                     @Override
@@ -85,6 +107,17 @@ public class MyPetService extends Service {
                     }
                 });
             }
+            if(!isPowerOff && !powerManager.isScreenOn()){
+                isPowerOff = true;
+                Log.i("MYSERVICE","POWER OFF");
+                PetInfo.saveAndClose();
+            }
+            else if(isPowerOff && powerManager.isScreenOn()){
+                isPowerOff = false;
+                Log.i("MYSERVICE","POWER ON");
+                PetInfo.updata();
+            }
+
         }
     }
 

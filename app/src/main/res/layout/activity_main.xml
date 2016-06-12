@@ -12,12 +12,14 @@
     <LinearLayout
         android:id="@+id/linerlayout_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
         <TextView
             android:id="@+id/txt_petname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Unknow " />
+            android:text="Unknow "
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +42,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/linerlayout_info"
         android:orientation="vertical"
-        android:gravity="clip_vertical">
+        android:gravity="clip_vertical"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,7 +70,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="健康值：："/>
+            android:text="健康值："
+            android:layout_marginTop="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +93,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="饥饿值："/>
+            android:text="饥饿值："
+            android:layout_marginTop="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,6 +116,35 @@
 
 
         <!--TODO: 闹钟navigation -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="闹钟："/>
+            <TextView
+                android:id="@+id/tv_alarmStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_alarmSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="闹钟"/>
+            <Button
+                android:id="@+id/btn_alarmCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消闹钟"/>
+    </LinearLayout>
+
     </LinearLayout>
 
 

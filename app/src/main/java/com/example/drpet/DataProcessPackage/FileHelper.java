@@ -31,11 +31,11 @@ public class FileHelper {
      * @param context 实例化上下文
      * @param content 写入内容
      */
-    public void f_write(Context context, String content){
+    public void f_write(Context context, String content, int MODE){
         FileOutputStream fileOutputStream = null;
         BufferedWriter bufferedWriter = null;
         try {
-            fileOutputStream = context.openFileOutput(filename, Context.MODE_APPEND);
+            fileOutputStream = context.openFileOutput(filename, MODE);// Context.MODE_APPEND);
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
             bufferedWriter.write(content);
         } catch (IOException e) {

@@ -33,7 +33,7 @@ public class PetInfoManager {
                 "'"+String.valueOf(hungerValue)+"'," +
                 "'"+desc+"')" );
         db.close();
-        deleteOldInfo();
+        //deleteOldInfo();
     }
 
     /***
@@ -74,7 +74,7 @@ public class PetInfoManager {
     public void deleteOldInfo(){
         Log.i("DATABASE","Delete old information");
         SQLiteDatabase db = mydbhelper.getWritableDatabase();
-        while(db.getPageSize() > 1000){
+        while(db.getMaximumSize() > 1000){
             String sql = "delete from petinfo where _time=(select min(_time) from petinfo)";
             db.execSQL(sql);
         }
