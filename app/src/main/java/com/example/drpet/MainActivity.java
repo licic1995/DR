@@ -197,8 +197,8 @@ public class MainActivity extends AppCompatActivity {
                                 c.set(Calendar.MILLISECOND, 0);            //设置闹钟的毫秒数
                                 Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);    //创建Intent对象
                                 intent_alarm = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);    //创建PendingIntent
-                                //alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, c.getTimeInMillis(), intent_alarm);        //设置闹钟
-                                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), intent_alarm );        //设置闹钟，当前时间就唤醒
+                                alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, c.getTimeInMillis(), intent_alarm);        //设置闹钟
+                                //alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), intent_alarm );        //设置闹钟，当前时间就唤醒
                                 Toast.makeText(MainActivity.this, "闹钟设置成功", Toast.LENGTH_LONG).show();//提示用户
                                 Log.i("ALARM",String.valueOf(c.getTimeInMillis())+"  "+String.valueOf(System.currentTimeMillis()));
                                 new Thread(new Runnable() {

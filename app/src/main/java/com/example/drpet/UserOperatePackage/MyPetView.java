@@ -96,7 +96,7 @@ public class MyPetView extends LinearLayout{
             case MotionEvent.ACTION_UP:
                 if(Math.abs(xPosInScreen_Down - xPosInScreen) < 20 && Math.abs(yPosInScreen_Down - yPosInScreen) < 20){
                     clickPet();
-                }else{
+                } else {
                     moveOver();
                 }
                 PetInfo.newHappy();
@@ -121,8 +121,7 @@ public class MyPetView extends LinearLayout{
             AnimationPlayer animationPlayer = new AnimationPlayer((ImageView) findViewById(R.id.iv_desktop));
             animationPlayer.startEat();
             Log.i("PET","Eating");
-        }
-        else {
+        } else {
             AnimationPlayer animationPlayer = new AnimationPlayer((ImageView) findViewById(R.id.iv_desktop));
             animationPlayer.startSleep();
         }

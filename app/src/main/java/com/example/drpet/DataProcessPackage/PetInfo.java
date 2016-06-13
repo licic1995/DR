@@ -27,9 +27,9 @@ public class PetInfo {
         Log.i("cursor",cursor.toString());
         if(cursor == null || !cursor.moveToLast()){
             Log.i("cursor","null");
-            happy = 100;
-            hunger = 100;
-            health = 100;
+            happy = 50;
+            hunger = 50;
+            health = 50;
             petInfoManager.insert(System.currentTimeMillis(), happy,health,hunger,"init");
             cursor.close();
             return;

@@ -9,6 +9,37 @@
     <item
         android:drawable="@drawable/ani_eat2"
         android:duration="200">
-
+    </item>
+    <item
+        android:drawable="@drawable/ani_eat1"
+        android:duration="200">
+    </item>
+    <item
+        android:drawable="@drawable/ani_eat2"
+        android:duration="200">
+    </item>
+    <item
+        android:drawable="@drawable/ani_eat1"
+        android:duration="200">
+    </item>
+    <item
+        android:drawable="@drawable/ani_eat2"
+        android:duration="200">
+    </item>
+    <item
+        android:drawable="@drawable/ani_eat1"
+        android:duration="200">
+    </item>
+    <item
+        android:drawable="@drawable/ani_eat2"
+        android:duration="200">
+    </item>
+    <item
+        android:drawable="@drawable/ani_eat1"
+        android:duration="200">
+    </item>
+    <item
+        android:drawable="@drawable/icon_normal"
+        android:duration="200">
     </item>
 </animation-list>
